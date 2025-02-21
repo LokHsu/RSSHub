@@ -75,6 +75,7 @@ if (fs.existsSync(dir)) {
     console.log('文件不存在');
 }
 
+
 fs.mkdirSync(dir, { recursive: true });
 
 console.log('Assets directory:', path.join(__dirname, 'assets', 'build'));
