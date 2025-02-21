@@ -67,8 +67,17 @@ for (const namespace in namespaces) {
     }
 }
 
+
 const dir = path.join(__dirname, '../../assets/build');
+if (fs.existsSync(dir)) {
+    console.log('文件存在');
+} else {
+    console.log('文件不存在');
+}
+
 fs.mkdirSync(dir, { recursive: true });
+
+console.log('Assets directory:', path.join(__dirname, 'assets', 'build'));
 
 fs.writeFileSync(path.join(dir, 'radar-rules.json'), JSON.stringify(radar, null, 2));
 fs.writeFileSync(path.join(dir, 'radar-rules.js'), `(${toSource(radar)})`);
