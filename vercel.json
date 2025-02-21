@@ -1,6 +1,8 @@
 {
     "version": 2,
-    "framework": null,
+    "builds": [
+        { "src": "api/vercel.ts", "use": "@vercel/node" }
+    ],
     "github": { "silent": true },
     "routes": [{ "src": "/.*", "dest": "/api/vercel.ts" }]
 }
