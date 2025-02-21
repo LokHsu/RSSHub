@@ -75,15 +75,23 @@ if (fs.existsSync(dir)) {
     console.log('文件不存在');
 }
 
+// fs.mkdirSync(dir, { recursive: true });
 
-fs.mkdirSync(dir, { recursive: true });
-
-console.log('Assets directory:', path.join(__dirname, 'assets', 'build'));
+console.log('Assets directory:', path.join(dir, 'radar-rules.json'));
 
 fs.writeFileSync(path.join(dir, 'radar-rules.json'), JSON.stringify(radar, null, 2));
 fs.writeFileSync(path.join(dir, 'radar-rules.js'), `(${toSource(radar)})`);
 fs.writeFileSync(path.join(dir, 'maintainers.json'), JSON.stringify(maintainers, null, 2));
 fs.writeFileSync(path.join(dir, 'routes.json'), JSON.stringify(namespaces, null, 2));
+
+fs.readdir(dir, (err, files) => {
+  if (err) {
+    console.error('无法读取目录:', err);
+  } else {
+    console.log('目录中的文件和文件夹:', files);
+  }
+});
+
 // fs.writeFileSync(path.join(__dirname, '../../assets/build/radar-rules.json'), JSON.stringify(radar, null, 2));
 // fs.writeFileSync(path.join(__dirname, '../../assets/build/radar-rules.js'), `(${toSource(radar)})`);
 // fs.writeFileSync(path.join(__dirname, '../../assets/build/maintainers.json'), JSON.stringify(maintainers, null, 2));
